@@ -42,5 +42,5 @@ jobs:
           SALESFORCE_ENDPOINT: ${{ secrets.SALESFORCE_ENDPOINT }}
         run: |
           for file in ${{ steps.changed-zip-files.outputs.all_changed_files }}; do
-            python $file ${{ steps.commit.outputs.short }}
+            python ${{ WORKDIR }}/scripts/upload_conversations.py $file ${{ steps.commit.outputs.short }}
           done
