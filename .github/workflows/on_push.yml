@@ -1,0 +1,29 @@
+name: On Push Import conversation
+
+on: push
+
+env:
+  WORKDIR: workdir
+  SALESFORCE_ENDPOINT: https://power-efficiency-5851-dev-ed.my.salesforce.com/services/apexrest/delpha/ImportConv/
+
+jobs:
+  upload_conversations:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get changed zip files
+        id: changed-zip-files
+        uses: tj-actions/changed-files@v35
+        with:
+          files: |
+            **.zip
+
+      - name: Print List of changed files
+        run |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
