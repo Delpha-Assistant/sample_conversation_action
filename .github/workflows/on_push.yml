@@ -3,7 +3,6 @@ name: On Push Import conversation
 on: push
 
 env:
-  WORKDIR: workdir
   SALESFORCE_ENDPOINT: https://power-efficiency-5851-dev-ed.my.salesforce.com/services/apexrest/delpha/ImportConv/
 
 jobs:
@@ -42,5 +41,5 @@ jobs:
           SALESFORCE_ENDPOINT: ${{ secrets.SALESFORCE_ENDPOINT }}
         run: |
           for file in ${{ steps.changed-zip-files.outputs.all_changed_files }}; do
-            python ${{ WORKDIR }}/scripts/upload_conversations.py $file ${{ steps.commit.outputs.short }}
+            python scripts/upload_conversations.py $file ${{ steps.commit.outputs.short }}
           done
