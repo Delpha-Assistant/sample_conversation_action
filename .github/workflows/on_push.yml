@@ -20,7 +20,7 @@ jobs:
         uses: tj-actions/changed-files@v35
         with:
           files: |
-            **.zip
+            conversations/*.zip
 
       - name: Print List of changed files
         run: |
